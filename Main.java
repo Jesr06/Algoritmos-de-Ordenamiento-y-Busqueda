@@ -1,29 +1,42 @@
 package ejercicio4;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
+import java.util.Collections;
 public class Main{
 
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
+        long totalSum = 0;
        int n = sc.nextInt();
-        
-       int matriz[] = new int[n];
-       
+        long startTime = System.currentTimeMillis(); 
+//       int arr[] = new int[n];
+       ArrayList<Integer> arr = new ArrayList<Integer>();
        Random ra = new Random();
         
         for (int i = 0; i < n; i++) {
-            matriz[i] = ra.nextInt();
+            arr.add(ra.nextInt());
         }
- 
-        burbuja(matriz);
         
-        for (int i = 0; i < n; i++) {
-            System.out.println(""+ matriz[i]);
-        }
-
+      Collections.sort(arr);  
+      
+      int bus = ra.nextInt();
+      arr.contains(bus);
+      
+//        shellSort(arr);
+//        burbuja(arr);
+//        seleccion(arr);
+        
+//          linearSearch(arr, dato);
+//            binarySearch(arr, dato);
+        
+//        for (int i = 0; i < n; i++) {
+//            System.out.println(""+ arr[i]);
+//        }
+    totalSum+= (System.currentTimeMillis()-startTime);
+        System.out.println("tiempo: "+totalSum);
         
     }
       //1
@@ -119,5 +132,13 @@ public class Main{
 
     return -1;
 }
+    
+    public static int[] unir(int[] a, int[] b)
+    {
+    int[] result = Arrays.copyOf(a, a.length + b.length);
+    System.arraycopy(b, 0, result, a.length, b.length);
+ 
+    return result;
+    }
     
 }
