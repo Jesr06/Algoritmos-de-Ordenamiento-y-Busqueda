@@ -51,6 +51,7 @@ int main(void){
 	}
 	cout<<"\n\n"<<endl;
 	int x = 10003;
+	int N = sizeof(arr) / sizeof(arr[0]);
 	// Function call
 	int result = search(arr, N, x);
 	(result == -1)
