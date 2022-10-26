@@ -3,25 +3,22 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math"
+	"math/rand"
+	"time"
 )
 
 func main() {
-	arregloDeNumeros := []int{1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 9, 10, 12, 15, 18, 20, 21}
-	busquedaNumerica := 3
-	resultadoBusquedaNumerica := busquedaBinariaRecursiva(arregloDeNumeros, busquedaNumerica, 0, len(arregloDeNumeros)-1)
-	resultadoSecuencial := busquedaSecuencial(arregloDeNumeros, busquedaNumerica)
-	fmt.Println(resultadoBusquedaNumerica)
-	fmt.Println(resultadoSecuencial)
-	//--------------
-	arreglo := []int{5, 4, 8, 6, 9, 1, 3, 15}
-	ordenado := insercion(arreglo)
-	ordenado2 := selectionSort(arreglo)
-	ordenado3 := bubbleSort(arreglo)
-	fmt.Println(ordenado)
-	fmt.Println(ordenado2)
-	fmt.Println(ordenado3)
+	var arr [1000000]int
+	for i := 0; i < 1000000; i++ {
+		arr[i] = rand.Intn(99999-10000) + 10000
+	}
+	x := rand.Intn(99999-10000) + 10000
+	var nuevoArr = insercion(arr[:])
+	start := time.Now()
+	busquedaBinariaRecursiva(nuevoArr, x, 0, len(nuevoArr)-1)
+	log.Printf("El tiempo fue %d", time.Since(start).Microseconds())
 }
 
 //------------------------------Algoritmos de Búsqueda ------------------------------------------------------------
@@ -124,4 +121,31 @@ func swap2(puntero_arreglo *[]int, index_derecha int) {
 	arreglo[index_izquierda] = arreglo[index_derecha]
 	arreglo[index_derecha] = copia
 
+}
+
+//--------------------------------------
+
+func reverseArray(arr []int) {
+	for i, j := 0, len(arr)-1; i < j; i, j = i+1, j-1 {
+		arr[i], arr[j] = arr[j], arr[i]
+	}
+}
+
+func insercion2(arreglo []int) []int {
+	for i := 1; i < len(arreglo)/2; i++ {
+		j := i
+		for j > 0 && arreglo[j-1] > arreglo[j] {
+			swap3(j-1, j, &arreglo)
+			j--
+		}
+	}
+	return arreglo
+
+}
+
+func swap3(previo, actual int, puntero_arreglo *[]int) {
+	arreglo := *puntero_arreglo
+	copia := arreglo[actual]
+	arreglo[actual] = arreglo[previo]
+	arreglo[previo] = copia
 }
